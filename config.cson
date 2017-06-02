@@ -1,0 +1,35 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "505c9855-0c8e-47d1-a46a-3b7cbae0ef1b"
+  "atom-clock":
+    dateFormat: "MMMM Do, dddd, h:mm:ss a"
+    showClockIcon: true
+  core:
+    disabledPackages: [
+      "seti-icons"
+      "semanticolor"
+      "shadow"
+      "linter-rubocop"
+    ]
+    telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "atom-sublime-monokai-syntax"
+    ]
+  editor:
+    fontSize: 12
+    preferredLineLength: 120
+  "exception-reporting":
+    userId: "4a486d63-3fb5-1216-88ff-d97bc6c2e57d"
+  linter: {}
+  minimap:
+    plugins:
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
+"linter-ruby":
+  ignoredExtensions: "erb, md"
