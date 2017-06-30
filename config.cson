@@ -11,6 +11,7 @@
       "semanticolor"
       "shadow"
       "linter-rubocop"
+      "editor-background"
     ]
     telemetryConsent: "no"
     themes: [
@@ -20,6 +21,11 @@
   editor:
     fontSize: 12
     preferredLineLength: 120
+    showIndentGuide: true
+  "editor-background":
+    image:
+      opacity: 5
+      url: "http://i.imgur.com/eBfjqSs.jpg"
   "exception-reporting":
     userId: "4a486d63-3fb5-1216-88ff-d97bc6c2e57d"
   linter: {}
