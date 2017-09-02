@@ -1,0 +1,39 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Quote Words",
+        "submenu": [
+          {
+            "label": "Double Quotes",
+            "command": "quote-words:double"
+          },
+          {
+            "label": "Single Quotes",
+            "command": "quote-words:single"
+          }
+        ]
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Quote Words",
+          "submenu": [
+            {
+              "label": "Double Quotes",
+              "command": "quote-words:double"
+            },
+            {
+              "label": "Single Quotes",
+              "command": "quote-words:single"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

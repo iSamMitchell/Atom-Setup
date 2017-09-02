@@ -1,0 +1,351 @@
+{
+  "calls": [
+    {
+      "callee": {
+        "id": "json.dumps",
+        "kind": "function",
+        "repr": "dumps",
+        "type": "function",
+        "type_id": "__builtin__.function",
+        "synopsis": "Serialize obj to a JSON formatted str using this conversion\ntable.  If ensure_ascii is False, the result may\ncontain non-ASCII characters and the return value may be a unicode\ninstance.\nThe arguments have the same meaning as in dump().\nNote\nKeys in key/value pairs of JSON are always of the type str. When\na dictionary is converted into JSON, all the keys of the dictionary are\ncoerced to strings. As a result of this, if a dictionary is converted\ninto JSON and then back into a dictionary, the dictionary may not equal\nthe original one. That is, loads(dumps(x)) != x if x has non-string\nkeys.",
+        "detail": {
+          "parameters": [
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "obj",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "skipkeys",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "ensure_ascii",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "check_circular",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "allow_nan",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "cls",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "indent",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "separators",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "encoding",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "default",
+              "synopsis": ""
+            },
+            {
+              "annotation": null,
+              "default_value": null,
+              "inferred_value": null,
+              "keyword_only": false,
+              "name": "sort_keys",
+              "synopsis": ""
+            }
+          ],
+          "return_annotation": null,
+          "return_value": null
+        }
+      },
+      "signatures": [
+        {
+          "args": [
+            {
+              "name": "obj",
+              "types": [
+                {
+                  "id": "__builtin__.dict",
+                  "name": "dict",
+                  "examples": [
+                    "{}",
+                    "{'success': True}",
+                    "{\"message\": message}"
+                  ]
+                },
+                {
+                  "id": "__builtin__.str",
+                  "name": "str",
+                  "examples": [
+                    "\"'Invalid state parameter.'\"",
+                    "\"'Failed to upgrade the authorization code.'\"",
+                    "\"'Current user not connected.'\""
+                  ]
+                },
+                {
+                  "id": "...",
+                  "name": "",
+                  "examples": null
+                }
+              ]
+            }
+          ],
+          "kwargs": null
+        },
+        {
+          "args": [
+            {
+              "name": "obj",
+              "types": [
+                {
+                  "id": "__builtin__.dict",
+                  "name": "dict",
+                  "examples": [
+                    "{}",
+                    "{'success': True}",
+                    "{\"message\": message}"
+                  ]
+                },
+                {
+                  "id": "__builtin__.str",
+                  "name": "str",
+                  "examples": [
+                    "\"'Invalid state parameter.'\"",
+                    "\"'Failed to upgrade the authorization code.'\"",
+                    "\"'Current user not connected.'\""
+                  ]
+                },
+                {
+                  "id": "...",
+                  "name": "",
+                  "examples": null
+                }
+              ]
+            }
+          ],
+          "kwargs": [
+            {
+              "name": "indent",
+              "types": [
+                {
+                  "id": "__builtin__.int",
+                  "name": "int",
+                  "examples": [
+                    "4",
+                    "2",
+                    "1"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "args": [
+            {
+              "name": "obj",
+              "types": [
+                {
+                  "id": "__builtin__.dict",
+                  "name": "dict",
+                  "examples": [
+                    "{}",
+                    "{'success': True}",
+                    "{\"message\": message}"
+                  ]
+                },
+                {
+                  "id": "__builtin__.str",
+                  "name": "str",
+                  "examples": [
+                    "\"'Invalid state parameter.'\"",
+                    "\"'Failed to upgrade the authorization code.'\"",
+                    "\"'Current user not connected.'\""
+                  ]
+                },
+                {
+                  "id": "...",
+                  "name": "",
+                  "examples": null
+                }
+              ]
+            }
+          ],
+          "kwargs": [
+            {
+              "name": "indent",
+              "types": [
+                {
+                  "id": "__builtin__.int",
+                  "name": "int",
+                  "examples": [
+                    "4",
+                    "2",
+                    "1"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "sort_keys",
+              "types": [
+                {
+                  "id": "__builtin__.bool",
+                  "name": "bool",
+                  "examples": [
+                    "True if pretty else False"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "args": [
+            {
+              "name": "obj",
+              "types": [
+                {
+                  "id": "__builtin__.dict",
+                  "name": "dict",
+                  "examples": [
+                    "{}",
+                    "{'success': True}",
+                    "{\"message\": message}"
+                  ]
+                },
+                {
+                  "id": "__builtin__.str",
+                  "name": "str",
+                  "examples": [
+                    "\"'Invalid state parameter.'\"",
+                    "\"'Failed to upgrade the authorization code.'\"",
+                    "\"'Current user not connected.'\""
+                  ]
+                },
+                {
+                  "id": "...",
+                  "name": "",
+                  "examples": null
+                }
+              ]
+            }
+          ],
+          "kwargs": [
+            {
+              "name": "cls",
+              "types": [
+                {
+                  "id": "__builtin__.type",
+                  "name": "type",
+                  "examples": [
+                    "json.JSONEncoder if self.compact else DateJSONEncoder"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "args": [
+            {
+              "name": "obj",
+              "types": [
+                {
+                  "id": "__builtin__.dict",
+                  "name": "dict",
+                  "examples": [
+                    "{}",
+                    "{'success': True}",
+                    "{\"message\": message}"
+                  ]
+                },
+                {
+                  "id": "__builtin__.str",
+                  "name": "str",
+                  "examples": [
+                    "\"'Invalid state parameter.'\"",
+                    "\"'Failed to upgrade the authorization code.'\"",
+                    "\"'Current user not connected.'\""
+                  ]
+                },
+                {
+                  "id": "...",
+                  "name": "",
+                  "examples": null
+                }
+              ]
+            }
+          ],
+          "kwargs": [
+            {
+              "name": "default",
+              "types": [
+                {
+                  "id": "new.function",
+                  "name": "function",
+                  "examples": null
+                },
+                {
+                  "id": "__builtin__.function",
+                  "name": "function",
+                  "examples": [
+                    "lambda o: o.__dict__",
+                    "lambda o: dict((k, v) for k, v in o.__dict__.iteritems())",
+                    "lambda obj: obj.__dict__"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "arg_index": 0
+    }
+  ]
+}

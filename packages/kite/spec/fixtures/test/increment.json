@@ -1,0 +1,108 @@
+{
+  "part_of_syntax": "name",
+  "symbol": [
+    {
+      "id": "",
+      "name": "increment",
+      "namespace": null,
+      "value": [
+        {
+          "id": "sample:Test.increment",
+          "kind": "function",
+          "type": "FunctionType",
+          "type_id": "types.FunctionType",
+          "repr": "function:sample:Test.increment",
+          "synopsis": "synopsis here",
+          "detail": {
+            "receiver": {
+              "name": "self",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "",
+                  "kind": "instance",
+                  "repr": "instance:sample:Test",
+                  "type": "sample:Test",
+                  "type_id": "sample:Test"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": ""
+            },
+            "parameters": [
+              {
+                "name": "n",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "",
+                    "kind": "instance",
+                    "repr": "2",
+                    "type": "int",
+                    "type_id": "__builtin__.int"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "n synopsis here"
+              }
+            ],
+            "return_value": [
+              {
+                "id": "",
+                "kind": "instance",
+                "repr": "int",
+                "type": "int",
+                "type_id": "__builtin__.int"
+              }
+            ],
+            "return_annotation": null,
+            "vararg": {
+              "name": "args",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "",
+                  "kind": "instance",
+                  "repr": "[]",
+                  "type": "list",
+                  "type_id": "__builtin__.list"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "varargs synopsis here"
+            },
+            "kwarg": {
+              "name": "kwargs",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "",
+                  "kind": "instance",
+                  "repr": "{}",
+                  "type": "dict",
+                  "type_id": "__builtin__.dict"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "kwargs synopsis here"
+            },
+            "discovered_kwargs": [],
+            "class": "",
+            "class_id": "",
+            "module": "",
+            "module_id": ""
+          }
+        }
+      ],
+      "synopsis": "synopsis here"
+    }
+  ],
+  "report": {
+    "description_text": "",
+    "description_markdown": ""
+  }
+}

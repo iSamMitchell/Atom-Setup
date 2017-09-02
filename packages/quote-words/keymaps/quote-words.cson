@@ -1,0 +1,3 @@
+'atom-text-editor':
+  'ctrl-"': 'quote-words:double'
+  "ctrl-'": 'quote-words:single'

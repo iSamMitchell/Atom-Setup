@@ -5,6 +5,7 @@
   "atom-clock":
     dateFormat: "MMMM Do, dddd, h:mm:ss a"
     showClockIcon: true
+  "atom-slack-snippets": {}
   core:
     disabledPackages: [
       "seti-icons"
@@ -19,7 +20,7 @@
       "atom-sublime-monokai-syntax"
     ]
   editor:
-    fontSize: 12
+    fontSize: 11
     preferredLineLength: 120
     showIndentGuide: true
   "editor-background":
@@ -28,13 +29,14 @@
       url: "http://i.imgur.com/eBfjqSs.jpg"
   "exception-reporting":
     userId: "4a486d63-3fb5-1216-88ff-d97bc6c2e57d"
+  kite:
+    showKiteTourOnStatup: false
   linter: {}
   minimap:
     plugins:
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
-  "tree-view":
-    hideVcsIgnoredFiles: true
+  "tree-view": {}
   welcome:
     showOnStartup: false
 "linter-ruby":

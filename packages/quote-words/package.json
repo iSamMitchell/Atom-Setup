@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/d-117622-96687-1i37fne.alif9lik9/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/d-117622-96687-1i37fne.alif9lik9/package.tgz",
+        "spec": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/d-117622-96687-1i37fne.alif9lik9/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/apm-install-dir-117622-96687-1r3nbyy.9wwrazto6r"
+    ]
+  ],
+  "_from": "../d-117622-96687-1i37fne.alif9lik9/package.tgz",
+  "_id": "quote-words@0.2.0",
+  "_inCache": true,
+  "_location": "/quote-words",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/d-117622-96687-1i37fne.alif9lik9/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/d-117622-96687-1i37fne.alif9lik9/package.tgz",
+    "spec": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/d-117622-96687-1i37fne.alif9lik9/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117622-96687-1i37fne.alif9lik9/package.tgz",
+  "_shasum": "a129ce20db713205068792ae16b842e0bec594a6",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/d-117622-96687-1i37fne.alif9lik9/package.tgz",
+  "_where": "/private/var/folders/wz/90fjkwh97mg_5cz8gbpc3qrr0000gn/T/apm-install-dir-117622-96687-1r3nbyy.9wwrazto6r",
+  "activationCommands": {
+    "atom-workspace": "quote-words:double"
+  },
+  "bugs": {
+    "url": "https://github.com/jamesr73/quote-words/issues"
+  },
+  "dependencies": {},
+  "description": "Quote every word of the selected text",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/jamesr73/quote-words#readme",
+  "keywords": [
+    "quotes",
+    "replace",
+    "editor"
+  ],
+  "license": "MIT",
+  "main": "./lib/quote-words",
+  "name": "quote-words",
+  "optionalDependencies": {},
+  "readme": "# Atom quote-words package\nQuotes the separated words in the selected text.\n\n## Installing\nUse the Atom package manager, which can be found in the Settings view, to search for and install quote-words. Or on the command line\n\n```\napm install quote-words\n```\n\n## Usage\nSelect words to quote such that this:\n\n```\nFOO, BAR, QUX\n```\n\nbecomes this:\n\n```\n\"FOO\", \"BAR\", \"QUX\"\n```\n\nIt looks for words containing standard word characters: letters, numbers and underscores. You may choose to use double or single quotes. It will update any existing quotes, either double or single, to your chosen quote character:\n\n```\n\"FOO\", 'BAR',\nFOO_BAR\n, FIZZY_1 : Q-U-X\n```\n\nbecomes this:\n\n```\n\"FOO\", \"BAR\",\n\"FOO_BAR\"\n, \"FIZZY_1\" : \"Q\"-\"U\"-\"X\"\n```\n\nMultiple words appearing between punctuation separators are quoted together:\n\n```\nFrench Polynesia, French Southern Territories\n```\n\nbecomes this:\n\n```\n\"French Polynesia\", \"French Southern Territories\"\n```\n\nMore complex strings are treated naively:\n\n```\nhttps://github.com\n```\n\nbecomes this:\n\n```\n\"https\"://\"github\".\"com\"\n```\n\nThe commands are accessible from Packages -> Quote Words, context-menu -> Quote Words or default shortcuts:\n\n`ctrl-\"` and `ctrl-'`\n\nYou may need to install [keyboard-localization](https://atom.io/packages/keyboard-localization) for the shortcuts to work as expected with your keyboard.\n\n## License\nMIT\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesr73/quote-words.git"
+  },
+  "version": "0.2.0",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/quote-words.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

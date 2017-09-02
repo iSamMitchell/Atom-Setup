@@ -1,0 +1,188 @@
+@import "variables";
+
+@rate: 1;
+
+@keyframes collapser-appears {
+  0% {
+    width: 0;
+    display: none;
+  }
+  1% {
+    width: 0;
+    display: block;
+  }
+  60% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: @component-padding;
+    opacity: 1;
+  }
+}
+
+@keyframes pane-appears {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  1% {
+    opacity: 0;
+    display: block;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+kite-active-search {
+  display: flex;
+  flex-direction: column;
+  background: @hover-background-color;
+  position: absolute;
+  z-index: 100;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: @half-padding;
+  transition: width (0.2s * @rate);
+
+  &[position="hidden"] {
+    display: none;
+  }
+
+  &[position="top-right"] {
+    top: 10%;
+    right: 1px;
+    padding-left: @component-padding;
+
+    .collapser {
+      left: 0;
+    }
+  }
+
+  &[position="bottom-right"] {
+    bottom: 10%;
+    right: 1px;
+    padding-left: @double-padding;
+
+    .collapser {
+      left: 0;
+    }
+  }
+
+  &.collapsed {
+    width: 3.2em;
+    height: 3.2em;
+    transition: width (0.1s * @rate), height (0.01s * @rate) ease (0.1s * @rate);
+
+    kite-expand, .select-list, .collapser {
+      display: none;
+    }
+  }
+
+  h4 .sticky.fixed {
+    background: @hover-background-color;
+
+    &:hover {
+      background: mix(@hover-background-color, @text-color-info, 90%);
+    }
+  }
+
+  kite-navigable-stack section.summary.collapsible.collapse.overflow .description::after {
+    background-image: linear-gradient(to top, @hover-background-color 0%, transparent 100%);
+  }
+
+  &:not(.collapsed) {
+    width: 400px;
+    height: 80%;
+
+    .expander {
+      pointer-events: none;
+    }
+
+    kite-expand, .select-list {
+      animation: pane-appears (0.5s * @rate);
+    }
+    .collapser {
+      animation: collapser-appears (0.5s * @rate);
+    }
+  }
+
+  atom-text-editor[mini] {
+    background: transparent;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: @base-background-color;
+    font-family: sans-serif;
+
+    &.is-focused {
+      background: transparent;
+      border-radius: 0;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      box-shadow: none;
+    }
+  }
+
+  .expander {
+    padding: 0.4em;
+    cursor: pointer;
+    position: absolute;
+    right: @half-padding;
+    top: @half-padding;
+  }
+
+  .collapser {
+    background: @border-color;
+    color: @base-background-color;
+    position: absolute;
+    width: @component-padding;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      margin-top: -0.5em;
+      left: 50%;
+      margin-left: -3px;
+    }
+  }
+
+  kite-expand {
+    flex: 1 1 auto;
+    border-top: 1px solid @base-background-color;
+    max-height: none;
+    margin: @component-padding 5px 0;
+  }
+
+  .select-list.popover-list {
+    width: auto;
+    background: none;
+    box-shadow: none;
+
+    ol.list-group {
+      max-height: 130px;
+      li {
+        font-size: 1.2em;
+        cursor: pointer;
+
+        &.selected {
+          background: fadeout(@text-color-highlight, 90%);
+        }
+
+        small {
+          opacity: 0.75;
+          margin-left: 0.5em;
+        }
+      }
+    }
+  }
+}
