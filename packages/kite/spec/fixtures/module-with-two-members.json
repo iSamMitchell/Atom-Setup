@@ -13,50 +13,52 @@
           "type": "module",
           "type_id": "__builtin__.module",
           "synopsis": "This module provides a portable way of using operating system dependent functionality",
-          "detail": {
-            "total_members": 2,
-            "members": [
-              {
-                "id": "os.spawnvp",
-                "name": "spawnvp",
-                "namespace": {
-                  "id": "",
-                  "kind": "module",
-                  "repr": "external:os",
-                  "type": "module",
-                  "type_id": "__builtin__.module"
+          "details": {
+            "module": {
+              "total_members": 2,
+              "members": [
+                {
+                  "id": "os.spawnvp",
+                  "name": "spawnvp",
+                  "namespace": {
+                    "id": "",
+                    "kind": "module",
+                    "repr": "external:os",
+                    "type": "module",
+                    "type_id": "__builtin__.module"
+                  },
+                  "value": [
+                    {
+                      "id": "os.spawnvp",
+                      "kind": "function",
+                      "repr": "external:os.spawnvp",
+                      "type": "type",
+                      "type_id": "__builtin__.type"
+                    }
+                  ]
                 },
-                "value": [
-                  {
-                    "id": "os.spawnvp",
-                    "kind": "function",
-                    "repr": "external:os.spawnvp",
-                    "type": "type",
-                    "type_id": "__builtin__.type"
-                  }
-                ]
-              },
-              {
-                "id": "posix.WSTOPSIG",
-                "name": "WSTOPSIG",
-                "namespace": {
-                  "id": "",
-                  "kind": "module",
-                  "repr": "external:os",
-                  "type": "module",
-                  "type_id": "__builtin__.module"
-                },
-                "value": [
-                  {
-                    "id": "posix.WSTOPSIG",
-                    "kind": "function",
-                    "repr": "external:posix.WSTOPSIG",
-                    "type": "type",
-                    "type_id": "__builtin__.type"
-                  }
-                ]
-              }
-            ]
+                {
+                  "id": "posix.WSTOPSIG",
+                  "name": "WSTOPSIG",
+                  "namespace": {
+                    "id": "",
+                    "kind": "module",
+                    "repr": "external:os",
+                    "type": "module",
+                    "type_id": "__builtin__.module"
+                  },
+                  "value": [
+                    {
+                      "id": "posix.WSTOPSIG",
+                      "kind": "function",
+                      "repr": "external:posix.WSTOPSIG",
+                      "type": "type",
+                      "type_id": "__builtin__.type"
+                    }
+                  ]
+                }
+              ]
+            }
           }
         }
       ],

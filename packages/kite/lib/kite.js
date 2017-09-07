@@ -305,7 +305,7 @@ module.exports = {
     }, atom.config.get('kite.pollingInterval'));
 
     // We try to connect at startup
-    return this.connect().then(state => {
+    return this.app.connectWithLanguages().then(state => {
       if (state === KiteApp.STATES.UNSUPPORTED) {
         if (!StateController.isOSSupported()) {
           metrics.track('OS unsupported');
@@ -617,7 +617,8 @@ module.exports = {
   patchCompletions() {
     atom.packages.activatePackage('autocomplete-plus')
     .then(autocompletePlus => {
-      const manager = autocompletePlus.mainModule.getAutocompleteManager();
+      const acp = autocompletePlus.mainModule;
+      const manager = acp.autocompleteManager || acp.getAutocompleteManager();
       const list = manager.suggestionList;
       const listElement = list.suggestionListElement
         ? list.suggestionListElement
@@ -684,7 +685,8 @@ module.exports = {
           });
       };
 
-      const autocompleteManager = autocompletePlus.mainModule.getAutocompleteManager();
+      const acp = autocompletePlus.mainModule;
+      const autocompleteManager = acp.autocompleteManager || acp.getAutocompleteManager();
 
       if (!autocompleteManager || !autocompleteManager.confirm || !autocompleteManager.displaySuggestions) { return; }
 

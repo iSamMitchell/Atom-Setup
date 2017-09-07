@@ -1,9 +1,10 @@
 'use strict';
 
 const {openDocumentationInWebURL} = require('../urls');
-const {renderValueHeader, renderExtend, renderExamples, renderUsages, renderDefinition, renderMembers, valueDescription, debugData, renderLinks} = require('./html-utils');
+const {renderValueHeader, renderExtend, renderExamples, renderUsages, renderDefinition, renderMembers, valueDescription, debugData, renderLinks, renderParameters} = require('./html-utils');
 const StickyTitle = require('./sticky-title');
 const {idIsEmpty} = require('../kite-data-utils');
+const {renderPatterns, renderLanguageSpecificArguments} = require('./function-utils');
 
 class KiteExpandModule extends HTMLElement {
   static initClass() {
@@ -19,6 +20,13 @@ class KiteExpandModule extends HTMLElement {
 
     <div class="scroll-wrapper">
       <div class="sections-wrapper">
+        ${
+          value.kind === 'type'
+            ? `${renderParameters(value)}
+               ${renderPatterns(value)}
+               ${renderLanguageSpecificArguments(value)}`
+            : ''
+        }
         <section class="summary">
           <h4>Summary</h4>
           ${valueDescription(data)}

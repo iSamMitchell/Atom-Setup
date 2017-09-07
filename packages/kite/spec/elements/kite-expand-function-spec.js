@@ -59,6 +59,39 @@ describe('KiteExpandFunction', () => {
         expect(parameters).not.toExist();
       });
     });
+
+    describe('when the function has a javascript rest argument', () => {
+      beforeEach(() => {
+        json = require('../fixtures/test/increment-js.json');
+        element.setData(reportFromHover(json));
+      });
+
+      it('fills the name and type section with provided data', () => {
+        expect(element.querySelector('.expand-header .name').textContent)
+        .toEqual('Test.increment(n, …opts)');
+        expect(element.querySelector('.expand-header .type').textContent).toEqual('-> int');
+      });
+
+      it('renders the parameters section', () => {
+        const parameters = element.querySelector('section.parameters');
+
+        expect(parameters).toExist();
+
+        const dts = parameters.querySelectorAll('dt');
+        const dds = parameters.querySelectorAll('dd');
+        expect(dts.length).toEqual(2);
+        expect(dds.length).toEqual(2);
+
+
+        expect(dts[0].querySelector('.name').textContent).toEqual('n');
+        expect(dts[0].querySelector('.type').textContent).toEqual('int');
+        expect(dds[0].textContent).toEqual('n synopsis here');
+
+        expect(dts[1].querySelector('.name').textContent).toEqual('…opts');
+        expect(dts[1].querySelector('.type').textContent).toEqual('array');
+        expect(dds[1].textContent).toEqual('opts synopsis here');
+      });
+    });
   });
 
   describe('with value report data', () => {

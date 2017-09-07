@@ -13,88 +13,115 @@
           "type_id": "types.FunctionType",
           "repr": "function:sample:Test.increment",
           "synopsis": "synopsis here",
-          "detail": {
-            "receiver": {
-              "name": "self",
-              "default_value": null,
-              "inferred_value": [
+          "details": {
+            "function": {
+              "language": "python",
+              "parameters": [
                 {
-                  "id": "",
-                  "kind": "instance",
-                  "repr": "instance:sample:Test",
-                  "type": "sample:Test",
-                  "type_id": "sample:Test"
-                }
-              ],
-              "annotation": null,
-              "keyword_only": false,
-              "synopsis": ""
-            },
-            "parameters": [
-              {
-                "name": "n",
-                "default_value": null,
-                "inferred_value": [
-                  {
-                    "id": "",
-                    "kind": "instance",
-                    "repr": "2",
-                    "type": "int",
-                    "type_id": "__builtin__.int"
+                  "language": "python",
+                  "name": "n",
+                  "inferred_value": [
+                    {
+                      "id": "",
+                      "kind": "instance",
+                      "repr": "2",
+                      "type": "int",
+                      "type_id": "__builtin__.int"
+                    }
+                  ],
+                  "synopsis": "n synopsis here",
+                  "language_details": {
+                    "Python": {
+                      "default_value": null,
+                      "annotation": null,
+                      "keyword_only": false
+                    }
                   }
-                ],
-                "annotation": null,
-                "keyword_only": false,
-                "synopsis": "n synopsis here"
-              }
-            ],
-            "return_value": [
-              {
-                "id": "",
-                "kind": "instance",
-                "repr": "int",
-                "type": "int",
-                "type_id": "__builtin__.int"
-              }
-            ],
-            "return_annotation": null,
-            "vararg": {
-              "name": "args",
-              "default_value": null,
-              "inferred_value": [
+                }
+              ],
+              "return_value": [
                 {
                   "id": "",
                   "kind": "instance",
-                  "repr": "[]",
-                  "type": "list",
-                  "type_id": "__builtin__.list"
+                  "repr": "int",
+                  "type": "int",
+                  "type_id": "__builtin__.int"
                 }
               ],
-              "annotation": null,
-              "keyword_only": false,
-              "synopsis": "varargs synopsis here"
-            },
-            "kwarg": {
-              "name": "kwargs",
-              "default_value": null,
-              "inferred_value": [
-                {
-                  "id": "",
-                  "kind": "instance",
-                  "repr": "{}",
-                  "type": "dict",
-                  "type_id": "__builtin__.dict"
+              "language_details": {
+                "Python": {
+                  "receiver": {
+                    "language": "python",
+                    "name": "self",
+                    "inferred_value": [
+                      {
+                        "id": "",
+                        "kind": "instance",
+                        "repr": "instance:sample:Test",
+                        "type": "sample:Test",
+                        "type_id": "sample:Test"
+                      }
+                    ],
+                    "synopsis": "",
+                    "language_details": {
+                      "Python": {
+                        "default_value": null,
+                        "annotation": null,
+                        "keyword_only": false
+                      }
+                    }
+                  },
+                  "return_annotation": null,
+                  "vararg": {
+                    "language": "python",
+                    "name": "args",
+                    "inferred_value": [
+                      {
+                        "id": "",
+                        "kind": "instance",
+                        "repr": "[]",
+                        "type": "list",
+                        "type_id": "__builtin__.list"
+                      }
+                    ],
+                    "synopsis": "varargs synopsis here",
+                    "language_details": {
+                      "Python": {
+                        "default_value": null,
+                        "annotation": null,
+                        "keyword_only": false
+                      }
+                    }
+                  },
+                  "kwarg": {
+                    "language": "python",
+                    "name": "kwargs",
+                    "inferred_value": [
+                      {
+                        "id": "",
+                        "kind": "instance",
+                        "repr": "{}",
+                        "type": "dict",
+                        "type_id": "__builtin__.dict"
+                      }
+                    ],
+                    "synopsis": "kwargs synopsis here",
+                    "language_details": {
+                      "Python": {
+                        "annotation": null,
+                        "default_value": null,
+                        "keyword_only": false
+                      }
+                    }
+                  },
+                  "discovered_kwargs": []
                 }
-              ],
-              "annotation": null,
-              "keyword_only": false,
-              "synopsis": "kwargs synopsis here"
-            },
-            "discovered_kwargs": [],
-            "class": "",
-            "class_id": "",
-            "module": "",
-            "module_id": ""
+              },
+              "class": "",
+              "class_id": "",
+              "module": "",
+              "module_id": ""
+            }
           }
         }
       ],

@@ -1,10 +1,10 @@
 'use strict';
 
 const {openDocumentationInWebURL} = require('../urls');
-const {renderValueHeader, renderExtend, renderUsages, renderParameters, renderParameter, renderExamples, renderDefinition, renderInvocations, valueDescription, debugData, renderLinks, highlightCode, proFeatures, pluralize} = require('./html-utils');
-const {callSignature, idIsEmpty} = require('../kite-data-utils');
+const {renderValueHeader, renderExtend, renderUsages, renderParameters, renderExamples, renderDefinition, renderInvocations, valueDescription, debugData, renderLinks} = require('./html-utils');
+const {idIsEmpty} = require('../kite-data-utils');
+const {renderPatterns, renderLanguageSpecificArguments} = require('./function-utils');
 const StickyTitle = require('./sticky-title');
-const Plan = require('../plan');
 
 class KiteExpandFunction extends HTMLElement {
   static initClass() {
@@ -20,8 +20,8 @@ class KiteExpandFunction extends HTMLElement {
     <div class="scroll-wrapper">
       <div class="sections-wrapper">
         ${renderParameters(value)}
-        ${this.renderPatterns(value)}
-        ${this.renderKwargs(value)}
+        ${renderPatterns(value)}
+        ${renderLanguageSpecificArguments(value)}
 
         <section class="summary">
           <h4>Summary</h4>
@@ -44,54 +44,6 @@ class KiteExpandFunction extends HTMLElement {
       : ''}
     </footer>
     `;
-  }
-
-  renderPatterns(data) {
-    let patterns = '';
-    const name = data.repr;
-    if (data.detail && data.detail.signatures && data.detail.signatures.length) {
-      patterns = Plan.can('common_invocations_editor')
-        ? `
-          <section class="patterns">
-          <h4>Popular Patterns</h4>
-          <div class="section-content">${
-            highlightCode(
-              data.detail.signatures
-              .map(s => callSignature(s))
-              .map(s => `${name}(${s})`)
-              .join('\n'))
-            }</div>
-          </section>`
-        : `<section class="patterns">
-            <h4>Popular Patterns</h4>
-            <div class="section-content">
-            ${proFeatures(
-              `To see ${data.detail.signatures.length} ${
-                pluralize(data.detail.signatures.length, 'pattern', 'patterns')
-              }`
-            )}</div>
-          </section>`;
-    }
-    return patterns;
-  }
-
-  renderKwargs(data) {
-    let kwargs = '';
-    const {detail} = data;
-    if (detail && detail.kwarg_parameters && detail.kwarg_parameters.length) {
-      kwargs = `<section class="kwargs">
-        <h4>**${detail.kwarg.name}</h4>
-        <div class="section-content"><dl>
-          ${
-            detail.kwarg_parameters
-            .map(p => renderParameter(p))
-            .map(p => `<dt>${p}</dt>`)
-            .join('')
-          }
-        </dl></div>
-      </section>`;
-    }
-    return kwargs;
   }
 
   attachedCallback() {

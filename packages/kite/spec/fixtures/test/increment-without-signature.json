@@ -15,10 +15,18 @@
           "module": "Test",
           "module_id": "",
           "synopsis": "synopsis here",
-          "detail": {
-            "parameters": [],
-            "vararg": null,
-            "kwarg": null
+          "details": {
+            "function": {
+              "language": "python",
+              "parameters": [],
+              "language_details": {
+                "Python": {
+                  "language": "python",
+                  "vararg": null,
+                  "kwarg": null
+                }
+              }
+            }
           }
         }
       ],

@@ -103,8 +103,8 @@ class KiteStatus extends HTMLElement {
       this.tooltipText = TOOLTIPS[state];
       this.setAttribute('status', STATUSES[state]);
       supported
-        ? this.setAttribute('is-active-python-file', '')
-        : this.removeAttribute('is-active-python-file');
+        ? this.setAttribute('is-active-kite-file', '')
+        : this.removeAttribute('is-active-kite-file');
 
       if (state >= STATES.WHITELISTED && sizeExceedsLimit) {
         this.tooltipText = TOOLTIPS.sizeExceedsLimit;

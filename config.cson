@@ -16,8 +16,8 @@
     ]
     telemetryConsent: "no"
     themes: [
-      "one-dark-ui"
-      "atom-sublime-monokai-syntax"
+      "atom-material-ui"
+      "atom-material-syntax"
     ]
   editor:
     fontSize: 11

@@ -1,7 +1,7 @@
 'use strict';
 
 const {CompositeDisposable} = require('atom');
-const {head, DisposableEvent} = require('../utils');
+const {head, DisposableEvent, detailLang, detailGet, getFunctionDetails} = require('../utils');
 const {openSignatureInWebURL, internalExpandURL, internalGotoIdURL} = require('../urls');
 const {valueLabel, valueName, callSignature} = require('../kite-data-utils');
 const {highlightCode, debugData, proFeatures, pluralize, renderParameter} = require('./html-utils');
@@ -42,7 +42,7 @@ class KiteSignature extends HTMLElement {
   setData(data, compact = false) {
     const call = head(data.calls);
     const name = valueName(call.callee);
-    const detail = call.callee.detail;
+    const detail = getFunctionDetails(call.callee);
     let extendedContent = '';
 
     compact = false;
@@ -52,14 +52,16 @@ class KiteSignature extends HTMLElement {
       : this.removeAttribute('compact');
 
     let kwargs = '';
-    if (detail.kwarg_parameters && detail.kwarg_parameters.length) {
-      kwargs = `<section class="kwargs ${call.in_kwargs ? 'visible' : ''}">
-      <h4>**${detail.kwarg.name}</h4>
+    const lang = detailLang(detail);
+
+    if (lang === 'python' && detailGet(detail, 'kwarg_parameters')) {
+      kwargs = `<section class="kwargs ${detailGet(call, 'in_kwargs') ? 'visible' : ''}">
+      <h4>**${detailGet(detail, 'kwarg').name}</h4>
       <kite-links metric="Signature">
       <dl>
       ${
-        detail.kwarg_parameters
-        .map((p, i) => renderParameter(p, '', call.in_kwargs && call.arg_index === i))
+        detailGet(detail, 'kwarg_parameters')
+        .map((p, i) => renderParameter(p, '', detailGet(call, 'in_kwargs') && call.arg_index === i))
         .join('')
       }
       </dl></kite-links>
@@ -71,7 +73,7 @@ class KiteSignature extends HTMLElement {
       if (call.signatures && call.signatures.length) {
         patterns = Plan.can('common_invocations_editor')
           ? `
-            <section>
+            <section class="patterns">
             <h4>Popular Patterns</h4>
             ${highlightCode(
               call.signatures
@@ -79,7 +81,7 @@ class KiteSignature extends HTMLElement {
               .map(s => `${name}(${s})`)
               .join('\n'))}
             </section>`
-          : `<section>
+          : `<section class="patterns">
               <h4>Popular Patterns</h4>
               ${proFeatures(
                 `To see ${call.signatures.length} ${pluralize(call.signatures.length, 'pattern', 'patterns')}`
@@ -109,7 +111,9 @@ class KiteSignature extends HTMLElement {
 
     this.innerHTML = `
     <div class="kite-signature-wrapper">
-      <div class="name">${valueLabel(call.callee, call.in_kwargs ? -1 : call.arg_index)}</div>
+      <div class="name">${
+        valueLabel(call.callee, detailGet(call, 'in_kwargs') ? -1 : call.arg_index)
+      }</div>
       ${extendedContent}
     </div>
     ${debugData(data)}
@@ -126,7 +130,7 @@ class KiteSignature extends HTMLElement {
     this.subscriptions.add(new DisposableEvent(this, 'click', (e) => {
       const editor = atom.workspace.getActiveTextEditor();
       const editorElement = atom.views.getView(editor);
-      editorElement.focus();
+      editorElement && editorElement.focus();
     }));
 
     if (kwargLink && kwargSection) {
@@ -134,7 +138,7 @@ class KiteSignature extends HTMLElement {
         kwargSection.classList.toggle('visible');
       }));
 
-      if (call.in_kwargs) {
+      if (detailGet(call, 'in_kwargs')) {
         setTimeout(() => {
           const dl = kwargSection.querySelector('dl');
           const dt = kwargSection.querySelector('dt.highlight');

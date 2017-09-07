@@ -16,6 +16,42 @@ const log = v => {
   return v;
 };
 
+const getDetails = (o, ...details) =>
+  o.detail || (o.details && details.reduce((m, k) => {
+    return m || o.details[k];
+  }, null));
+
+const evalPath = (o, ...path) =>
+  path.reduce((m, k) => {
+    if (k === '*' && m) { k = head(Object.keys(m)); }
+    return m && typeof m[k] !== 'undefined' ? m[k] : undefined;
+  }, o);
+
+const detailLang = o =>
+  o && o.language_details
+    ? head(Object.keys(o.language_details)).toLowerCase()
+    : 'python';
+
+const detailGet = (o, ...k) => evalPath(o, 'language_details', '*', ...k);
+
+const detailExist = (o, ...k) => detailGet(o, ...k) != null;
+
+const detailNotEmpty = (o, ...k) => {
+  const v = detailGet(o, ...k);
+  return v != null && v.length > 0;
+};
+
+const getFunctionDetails = (o) => {
+  const type = head(Object.keys(o.details).filter(k => o.details[k]));
+  if (type === 'function') {
+    return o.details.function;
+  } else if (type === 'type') {
+    return detailGet(o.details.type, 'constructor');
+  }
+
+  return null;
+};
+
 const merge = (a, b) => {
   const c = {};
   for (const k in a) { c[k] = a[k]; }
@@ -217,10 +253,16 @@ module.exports = {
   bufferPositionForMouseEvent,
   compact,
   delayPromise,
+  detailExist,
+  detailGet,
+  detailLang,
+  detailNotEmpty,
   DisposableEvent,
   eachParent,
   editorRoot,
   flatten,
+  getDetails,
+  getFunctionDetails,
   head,
   last,
   log,

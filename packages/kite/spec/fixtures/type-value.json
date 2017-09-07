@@ -6,17 +6,18 @@
     "type": "type",
     "type_id": "__builtin__.type",
     "synopsis": "",
-    "detail": {
-      "bases": [
-        {
-          "id": "sample.py:A",
-          "name": "sample.py:A",
-          "module": "",
-          "module_id": ":Users:cedric:github:kite:spec:fixtures:sample.py:"
-        }
-      ],
-      "components": null,
-      "members": [
+    "details": {
+      "type": {
+        "bases": [
+          {
+            "id": "sample.py:A",
+            "name": "sample.py:A",
+            "module": "",
+            "module_id": ":Users:cedric:github:kite:spec:fixtures:sample.py:"
+          }
+        ],
+        "components": null,
+        "members": [
         {
           "id": ":Users:cedric:github:kite:spec:fixtures:sample.py:B.__repr__",
           "name": "__repr__",
@@ -326,6 +327,7 @@
           ]
         }
       ]
+      }
     }
   },
   "report": {

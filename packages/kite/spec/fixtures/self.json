@@ -13,7 +13,7 @@
           "type": "sample:A",
           "type_id": "sample:A",
           "synopsis": "",
-          "detail": {
+          "details": {
             "type": [
               {
                 "id": "",
@@ -32,7 +32,7 @@
           "type": "sample:B",
           "type_id": "sample:B",
           "synopsis": "",
-          "detail": {
+          "details": {
             "type": [
               {
                 "id": "",
@@ -51,7 +51,7 @@
           "type": "sample.py:A",
           "type_id": "sample.py:A",
           "synopsis": "",
-          "detail": {
+          "details": {
             "type": [
               {
                 "id": "",
@@ -70,7 +70,7 @@
           "type": "sample.py:B",
           "type_id": "sample.py:B",
           "synopsis": "",
-          "detail": {
+          "details": {
             "type": [
               {
                 "id": "",

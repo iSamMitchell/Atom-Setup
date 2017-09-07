@@ -7,8 +7,13 @@ const Plan = require('./plan');
 let Kite;
 
 const KiteProvider = {
-  selector: '.source.python',
-  disableForSelector: '.source.python .comment, .source.python .string',
+  selector: '.source.python, .source.js',
+  disableForSelector: [
+    '.source.python .comment',
+    '.source.python .string',
+    '.source.js .comment',
+    '.source.js .string',
+  ].join(', '),
   inclusionPriority: 5,
   suggestionPriority: 5,
   excludeLowerPriority: false,
@@ -33,7 +38,7 @@ const KiteProvider = {
   },
 
   isInsideFunctionCall({scopeDescriptor}) {
-    return scopeDescriptor.scopes.some(s => s === 'meta.function-call.python');
+    return scopeDescriptor.scopes.some(s => s.indexOf('function-call') !== -1);
   },
 
   loadSignature({editor, bufferPosition}) {
@@ -42,7 +47,7 @@ const KiteProvider = {
     return DataLoader.getSignaturesAtPosition(editor, bufferPosition)
     .then(data => {
       if (data) {
-        const listElement = this.getSuggestionsListElement();
+        const listElement = this.getSuggestionsListElement( );
 
         listElement.maxVisibleSuggestions = compact
           ? atom.config.get('autocomplete-plus.maxVisibleSuggestions')

@@ -6,7 +6,7 @@ const http = require('http');
 const path = require('path');
 const DataLoader = require('../lib/data-loader');
 const {
-  withKiteWhitelistedPaths, withRoutes, fakeResponse,
+  withKiteWhitelistedPaths, withRoutes, fakeResponse, withFakeServer,
 } = require('./spec-helpers');
 
 const projectPath = path.join(__dirname, 'fixtures');
@@ -17,6 +17,21 @@ describe('DataLoader', () => {
     waitsForPromise(() => atom.workspace.open('sample.py').then(e => {
       editor = e;
     }));
+  });
+
+  describe('.getSupportedLanguages()', () => {
+    withFakeServer([
+      [
+        o => o.path === '/clientapi/languages',
+        o => fakeResponse(200, JSON.stringify(['javascript', 'python'])),
+      ],
+    ], () => {
+      it('returns a promise that resolve with the supported languages', () => {
+        waitsForPromise(() => DataLoader.getSupportedLanguages().then(languages => {
+          expect(languages).toEqual(['javascript', 'python']);
+        }));
+      });
+    });
   });
 
   withKiteWhitelistedPaths([projectPath], () => {

@@ -1,8 +1,8 @@
 'use strict';
 
 let os, path, Emitter, StateController, AccountManager, Logger, Installation,
-  Installer, Errors, Metrics, KiteLogin, Plan, parseJSON,
-  promisifyReadResponse, promisifyRequest, localconfig, errors;
+  Installer, Errors, Metrics, KiteLogin, Plan, parseJSON, promisifyReadResponse,
+  promisifyRequest, localconfig, errors, flatten, compact, DataLoader;
 
 const ensureKiteDeps = () => {
   if (!StateController) {
@@ -15,7 +15,7 @@ const ensureKiteDeps = () => {
 
 const ensureUtils = () => {
   if (!promisifyRequest) {
-    ({parseJSON, promisifyReadResponse, promisifyRequest} = require('./utils'));
+    ({parseJSON, promisifyReadResponse, promisifyRequest, flatten, compact} = require('./utils'));
   }
 };
 
@@ -23,6 +23,18 @@ const ATTEMPTS = 30;
 const INTERVAL = 2500;
 const INVALID_PASSWORD = 6;
 const PASSWORD_LESS_USER = 9;
+
+const EXTENSIONS_BY_LANGUAGES = {
+  python: [
+    'py',
+  ],
+  javascript: [
+    'js',
+    'jsx',
+    'mjs',
+    'es6',
+  ],
+};
 
 class KiteApp {
   static get STATES() {
@@ -192,14 +204,25 @@ class KiteApp {
     });
   }
 
+  connectWithLanguages() {
+    if (!DataLoader) { DataLoader = require('./data-loader'); }
+
+    return this.connect().then(state => {
+      if (state >= StateController.STATES.REACHABLE) {
+        return DataLoader.getSupportedLanguages()
+        .then(languages => [state, languages])
+        .catch(() => [state, ['python']]);
+      } else {
+        return [state, ['python']];
+      }
+    }).then(([s, l]) => {
+      this.supportedLanguages = l;
+      return s;
+    });
+  }
+
   installFlow() {
     ensureKiteDeps();
-
-    const editor = {
-      UUID: localStorage.getItem('metrics.userId'),
-      name: 'atom',
-    };
-    const plugin = { name: 'kite' };
 
     return StateController.canInstallKite().then((values) => {
 
@@ -437,7 +460,17 @@ class KiteApp {
   }
 
   isGrammarSupported(editor) {
-    return /\.py$/.test(editor.getPath() || '');
+    return this.supportedLanguages
+      ? new RegExp(this.getSupportedLanguagesRegExp(this.supportedLanguages))
+            .test(editor.getPath() || '')
+      : /\.py$/.test(editor.getPath() || '');
+  }
+
+  getSupportedLanguagesRegExp(languages) {
+    ensureUtils();
+    return `\.(${
+      compact(flatten(languages.map(l => EXTENSIONS_BY_LANGUAGES[l]))).join('|')
+    })$`;
   }
 }
 

@@ -1,5 +1,5 @@
 const path = require('path');
-const {head, compact, flatten} = require('../utils');
+const {head, compact, flatten, detailGet, detailLang, getDetails, getFunctionDetails} = require('../utils');
 const {
   symbolLabel, symbolType,
   valueLabel, valueType, idIsEmpty,
@@ -216,9 +216,10 @@ function renderUsage(usage) {
 }
 
 function renderMembers(value, limit) {
-  if (!value || !value.detail) { return ''; }
+  if (!value || !value.details) { return ''; }
 
-  const {members, total_members} = value.detail;
+  const detail = getDetails(value, 'type', 'module');
+  const {members, total_members} = detail;
 
   return members.length === 0
     ? ''
@@ -273,26 +274,58 @@ function additionalMembersLink(membersCount, value) {
 }
 
 function renderParameters(value) {
-  const {detail} = value;
+  const detail = getFunctionDetails(value);
 
-  const allParameters = compact(flatten([
-    detail ? detail.parameters : null,
-    detail ? detail.vararg : null,
-    detail ? detail.kwarg : null,
-  ]));
 
-  return detail &&
-         allParameters.length /*&&
-         allParameters.some(p => p.synopsis && p.synopsis !== '')*/
+  const allParameters = compact(flatten(gatherParameters(detail)));
+
+  return detail && allParameters.length
     ? section('Parameters', `
     <dl>
       ${detail.parameters
         ? detail.parameters.map(p => renderParameter(p)).join('')
         : ''}
-      ${renderParameter(detail.vararg, '*')}
-      ${renderParameter(detail.kwarg, '**')}
+      ${renderLanguageSpecificArguments(detail)}
     </dl>`)
     : '';
+}
+
+function gatherParameters(detail) {
+  const lang = detailLang(detail);
+  switch (lang) {
+    case 'python':
+      return [
+        detail ? detail.parameters || detailGet(detail, 'constructor', 'parameters') : null,
+        detail ? detailGet(detail, 'vararg') : null,
+        detail ? detailGet(detail, 'kwarg') : null,
+      ];
+    case 'javascript':
+      return [
+        detail ? detail.parameters : null,
+        detail ? detailGet(detail, 'rest') : null,
+      ];
+    default:
+      return [
+        detail ? detail.parameters : null,
+      ];
+  }
+}
+
+function renderLanguageSpecificArguments(detail) {
+  const lang = detailLang(detail);
+  switch (lang) {
+    case 'python':
+      return [
+        renderParameter(detailGet(detail, 'vararg'), '*'),
+        renderParameter(detailGet(detail, 'kwarg'), '**'),
+      ].join('');
+    case 'javascript':
+      return [
+        renderParameter(detailGet(detail, 'rest'), '…'),
+      ].join('');
+    default:
+      return '';
+  }
 }
 
 function renderParameter(param, prefix = '', highlight = false) {

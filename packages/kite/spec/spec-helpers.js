@@ -624,6 +624,16 @@ function withPlan(description, plan, block) {
   });
 }
 
+function withFakePlan(description, plan, block) {
+  describe(description, () => {
+    beforeEach(() => {
+      Plan.plan = plan;
+    });
+
+    block();
+  });
+}
+
 module.exports = {
   fakeProcesses, fakeRequestMethod, fakeResponse, fakeKiteInstallPaths,
 
@@ -639,6 +649,6 @@ module.exports = {
   withKiteReachable, withKiteNotReachable,
   withKiteAuthenticated, withKiteNotAuthenticated,
   withKiteWhitelistedPaths, withKiteBlacklistedPaths, withKiteIgnoredPaths,
-  withFakeServer, withRoutes, withPlan,
+  withFakeServer, withRoutes, withPlan, withFakePlan,
   sleep,
 };

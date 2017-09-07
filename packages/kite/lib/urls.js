@@ -10,6 +10,10 @@ function tokensPath(editor) {
   return `/api/buffer/atom/${buffer}/${state}/tokens`;
 }
 
+function languagesPath() {
+  return '/clientapi/languages';
+}
+
 function metricsCounterPath() {
   return '/clientapi/metrics/counters';
 }
@@ -183,6 +187,7 @@ module.exports = {
   internalGotoURL,
   internalOpenRangeInWebURL,
   internalURL,
+  languagesPath,
   membersPath,
   openDocumentationInWebURL,
   openExampleInWebURL,

@@ -13,8 +13,10 @@
           "type": "module",
           "type_id": "__builtin__.module",
           "synopsis": "This module provides a portable way of using operating system dependent functionality",
-          "detail": {
-            "members": []
+          "details": {
+            "module": {
+              "members": []
+            }
           }
         }
       ],

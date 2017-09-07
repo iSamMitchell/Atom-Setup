@@ -8,6 +8,7 @@ const {
   hoverPath,
   internalExpandURL,
   internalGotoIdURL,
+  languagesPath,
   membersPath,
   openDocumentationInWebURL,
   projectDirPath,
@@ -31,6 +32,24 @@ const metrics = require('./metrics');
 const ensureKite = () => { if (!Kite) { Kite = require('./kite'); } };
 
 const DataLoader = {
+  getSupportedLanguages() {
+    const path = languagesPath();
+    return promisifyRequest(StateController.client.request({path}))
+    .then(resp => {
+      Logger.logResponse(resp);
+      if (resp.statusCode !== 200) {
+        return promisifyReadResponse(resp)
+        .then(data => {
+          throw new Error(`Error ${resp.statusCode}: ${data}`);
+        });
+      } else {
+        return promisifyReadResponse(resp)
+        .then(json => parseJSON(json))
+        .catch(() => null);
+      }
+    });
+  },
+
   shouldOfferWhitelist(editor) {
     return this.projectDirForEditor(editor).then(path =>
       this.shouldNotify(editor).then(res => {

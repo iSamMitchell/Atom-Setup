@@ -101,7 +101,7 @@ class KiteEditor {
     return this.editor
       ? DataLoader.getTokensForEditor(this.editor).then(tokens => {
         this.tokensList.setTokens(tokens.tokens);
-      })
+      }).catch(() => {})
       : Promise.reject('Editor was destroyed');
   }
 
